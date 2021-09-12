@@ -1,0 +1,18 @@
+<div class="container mt-5">    
+    <div *ngIf="!eMailMode" style="text-align:center">
+        <h1>Pošaljite novi e-mail</h1>    
+        <p class="lead">Neki text...!</p>
+        <div class="center">
+            <button (click)="eMailToggle()" class="btn btn-primary btn-lg mr-2">Novi e-Mail</button>
+            <button class="btn btn-info btn-lg">Više...</button>
+        </div>
+    </div>
+
+    <div *ngIf="eMailMode" class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <app-novi-email (cancelEmailMode)="cancelEmailMode($event)"></app-novi-email>                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<form #newEmailForm="ngForm" (ngSubmit)="newEmail()" autocomplete="off">
+    <h2 class="text-center text-primary">Novi E-mail</h2>
+    <hr>
+    <div class="form-group">
+        <input type="text" class="form-control" name="emailFrom" 
+            [(ngModel)]="model.from" placeholder="From">
+
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="emailTo" 
+            [(ngModel)]="model.to" placeholder="To">        
+    </div>    
+    <div class="form-group">
+        <input type="text" class="form-control" name="emailCc" 
+            [(ngModel)]="model.cc" placeholder="Cc">
+
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="emailSubject" 
+            [(ngModel)]="model.subject" placeholder="Subject">        
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="emailImportance" 
+            [(ngModel)]="model.importance" placeholder="Importance">        
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="emailContent" 
+            [(ngModel)]="model.content" placeholder="Content">        
+    </div>
+    <hr>
+    <div class="form-group text-center">
+        <button class="btn btn-success btn-lg mr-2" type="submit">Send</button>
+        <button class="btn btn-default btn-lg mr-2" (click)="cancel()" type="button">Cancel</button>
+    </div>
+    
+          <!-- <div class="form-group">
+            <label for="branch">Branch</label>
+            <select id="branch" name="branch" ngModel class="form-control">
+              <option value="1">CSE</option>
+              <option value="2">ETC</option>
+              <option value="3">Mechanical</option>
+              <option value="4">Electrical</option>
+            </select>
+          </div> -->
+</form>

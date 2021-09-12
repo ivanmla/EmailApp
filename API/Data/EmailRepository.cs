@@ -1,4 +1,5 @@
 ﻿using API.Models;
+using API.Models.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,21 @@ namespace API.Data
             _context = context;
         }
 
-        public async Task<IEnumerable<Email>> GetEmailsAsync()
+        public async Task<IEnumerable<EmailMessage>> GetAsync()
         {
-            var result = await _context.Emails
-                //.Include(e => e.Tos)
+            var result = await _context.EmailMessages
+                .Include(e => e.Cc)
                 .ToListAsync();
 
             return result;
+        }
+
+        public async Task<bool> SaveAsync(EmailMessage email)
+        {
+            var insert = _context.EmailMessages.Add(email);
+            var success = await _context.SaveChangesAsync();
+
+            return success > 0 ? true : false;
         }
     }
 }

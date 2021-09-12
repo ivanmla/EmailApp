@@ -1,0 +1,14 @@
+<p>arhiva works!</p>
+
+<div class="container" style="margin-top: 100px;">
+    <ul>
+        <li *ngFor='let email of emails'>
+            - From : {{email.from}} 
+            - To: {{email.to}} 
+            - Cc: {{email.cc}} 
+            - Subject: {{email.subject}} 
+            - Importance: {{email.importance}} 
+            - Content: {{email.content}} 
+        </li>
+    </ul>
+</div>

@@ -8,19 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Email app';
-  emails: any;
 
   constructor(private http: HttpClient){}
 
   ngOnInit() {
-    this.getEmails();
   }
-
-  getEmails(){
-    this.http.get('https://localhost:5001/api/email/get').subscribe(response => {
-      this.emails = response;
-    }, error => {
-      console.log(error);
-    })
-  }
+  
 }

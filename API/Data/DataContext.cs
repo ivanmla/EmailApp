@@ -9,7 +9,6 @@ namespace API.Data
             : base (options)
         { }
 
-        public DbSet<Email> Emails { get; set; }
-        public DbSet<ToEmail> ToEmails { get; set; }
+        public DbSet<EmailMessage> EmailMessages { get; set; }
     }
 }

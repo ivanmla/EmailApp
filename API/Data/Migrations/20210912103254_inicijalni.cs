@@ -8,55 +8,56 @@ namespace API.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Emails",
+                name: "EmailMessages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     From = table.Column<string>(type: "TEXT", nullable: true),
+                    To = table.Column<string>(type: "TEXT", nullable: true),
                     Subject = table.Column<string>(type: "TEXT", nullable: true),
-                    Importance = table.Column<int>(type: "INTEGER", nullable: false),
+                    Importance = table.Column<string>(type: "TEXT", nullable: true),
                     Content = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Emails", x => x.Id);
+                    table.PrimaryKey("PK_EmailMessages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ToEmails",
+                name: "EmailAddress",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ToEml = table.Column<string>(type: "TEXT", nullable: true),
-                    EmailId = table.Column<int>(type: "INTEGER", nullable: false)
+                    To = table.Column<string>(type: "TEXT", nullable: true),
+                    EmailMessageId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ToEmails", x => x.Id);
+                    table.PrimaryKey("PK_EmailAddress", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ToEmails_Emails_EmailId",
-                        column: x => x.EmailId,
-                        principalTable: "Emails",
+                        name: "FK_EmailAddress_EmailMessages_EmailMessageId",
+                        column: x => x.EmailMessageId,
+                        principalTable: "EmailMessages",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ToEmails_EmailId",
-                table: "ToEmails",
-                column: "EmailId");
+                name: "IX_EmailAddress_EmailMessageId",
+                table: "EmailAddress",
+                column: "EmailMessageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ToEmails");
+                name: "EmailAddress");
 
             migrationBuilder.DropTable(
-                name: "Emails");
+                name: "EmailMessages");
         }
     }
 }
