@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EmailMessage } from '../_models/emailMessage';
-import { Importance } from '../_models/importance';
 import { EmailService } from '../_services/email.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { EmailService } from '../_services/email.service';
 export class NoviEmailComponent implements OnInit {
   model: EmailMessage = {};
 
-  constructor(private emailService: EmailService, private router: Router) { }
+  constructor(private emailService: EmailService, private router: Router, private tostr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +22,7 @@ export class NoviEmailComponent implements OnInit {
       console.log(response);
     }, error => {
       console.log(error);
+      this.tostr.error(error.error);
     })
   }
 

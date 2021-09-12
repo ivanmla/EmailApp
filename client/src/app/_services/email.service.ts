@@ -6,6 +6,7 @@ import { EmailMessage } from '../_models/emailMessage';
   providedIn: 'root'
 })
 export class EmailService {
+  //baseUrl='https://localhost:44398/api/';
   baseUrl='https://localhost:5001/api/';
 
   constructor(private http: HttpClient) { }
