@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  eMailMode = false;
+  newEmailMode = false;
 
   constructor(){}
 
@@ -14,11 +14,11 @@ export class HomeComponent implements OnInit {
   }
 
   eMailToggle() {
-    this.eMailMode = !this.eMailMode;
+    this.newEmailMode = !this.newEmailMode;
   }
 
-  cancelEmailMode(event: boolean){
-    this.eMailMode = event;
+  cancelNewEmailMode(event: boolean){
+    this.newEmailMode = event;
   }
 
 }

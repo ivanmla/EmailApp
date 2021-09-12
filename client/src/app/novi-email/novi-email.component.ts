@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmailMessage } from '../_models/emailMessage';
+import { Importance } from '../_models/importance';
 import { EmailService } from '../_services/email.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { EmailService } from '../_services/email.service';
 export class NoviEmailComponent implements OnInit {
   model: EmailMessage = {};
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +27,7 @@ export class NoviEmailComponent implements OnInit {
 
   cancel() {
     console.log('canceled');
+    this.router.navigateByUrl('/');
   }
 
 }

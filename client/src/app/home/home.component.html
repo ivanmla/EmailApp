@@ -1,5 +1,5 @@
 <div class="container mt-5">    
-    <div *ngIf="!eMailMode" style="text-align:center">
+    <div *ngIf="!newEmailMode" style="text-align:center">
         <h1>Pošaljite novi e-mail</h1>    
         <p class="lead">Neki text...!</p>
         <div class="center">
@@ -8,10 +8,10 @@
         </div>
     </div>
 
-    <div *ngIf="eMailMode" class="container">
+    <div *ngIf="newEmailMode" class="container">
         <div class="row justify-content-center">
             <div class="col-4">
-                <app-novi-email (cancelEmailMode)="cancelEmailMode($event)"></app-novi-email>                
+                <app-novi-email (cancelNewEmailMode)="cancelNewEmailMode($event)"></app-novi-email>                
             </div>
         </div>
     </div>
