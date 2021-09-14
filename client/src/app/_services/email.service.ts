@@ -7,24 +7,16 @@ import { EmailMessage } from '../_models/emailMessage';
 })
 
 export class EmailService {
-  baseUrl='https://localhost:44398/api/';
-  //baseUrl='https://localhost:5001/api/';
+  baseUrl='https://localhost:5001/api/email/';
 
-  constructor(private http: HttpClient) { }
-
-  sendMail(model:EmailMessage) {
-    return this.http.post(this.baseUrl + 'email/send', model);
+  constructor(private http: HttpClient) { }  
+  
+  getMails() {
+    return this.http.get<EmailMessage[]>(this.baseUrl + 'get');
   }
 
-  // getMails(){
-  //   this.http.get('https://localhost:5001/api/email/get').subscribe(response => {
-  //     this.emails = response;
-  //   }, error => {
-  //     console.log(error);
-  //   })
-  // }
-  getMails() {
-    return this.http.get<EmailMessage[]>(this.baseUrl + 'email/get');
+  sendMail(model:EmailMessage) {
+    return this.http.post(this.baseUrl + 'send', model);
   }
 
 }

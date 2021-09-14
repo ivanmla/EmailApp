@@ -6,3 +6,8 @@ molim vas javite se ...');
 -- SQLite
 INSERT INTO ToEmails (Id, ToEml, EmailId)
 VALUES (1, 'karlo.karlovic@oko.hr', 1), (2, 'maria.amric@oijo.he', 1);
+
+
+UPDATE EmailMessages 
+SET `From` = 'ivo@ivic@hr', `To` = 'mare@fgf.gg', Subject = 'kava', Importance = 'Medium', Content = 'lorem ispusm odfs. safen sdaaaaj '
+WHERE Id = 1;

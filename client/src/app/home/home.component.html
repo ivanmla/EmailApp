@@ -1,15 +1,16 @@
 <div class="container mt-5">    
     <div *ngIf="!newEmailMode" style="text-align:center">
-        <h1>Pošaljite novi e-mail</h1>    
+        <h1>Simple SPA aplication for creating new e-mails</h1>    
             <p class="lead">
-            Fronted je napravljem u Angular frameworku, korišteni su Bootstrap i ReactiveForms.</p>
+            Fronted je napravljem u Angular frameworku, korišteni su Bootstrap i ReactiveForms.
+            Obrirom da sam backend developer, ovo je skroman frontend :) </p>
             <p class="lead">
-                Backend je kreiran u .Net Coru 5, za povezivanje sa bazom korišten je EntityFrameworkCore.</p>
+                Backend je kreiran u .Net Coru 5. Aplikacija je veoma jednostavna pa nisam komplicirao sa layerima. 
+                Ubacio sam Repository pattern i manualno napravio mappere - eventualno se mogao koristiti i Automapper.</p>
             <p class="lead">
-                Za bazu sam odabrao Sqlite zbog jednostavnosti.</p>
+                Za povezivanje sa bazom korišten je EntityFrameworkCore, za bazu sam odabrao Sqlite jer je dovoljno dobra za ovaj zadatak.</p>            
         <div class="center">
-            <button (click)="eMailToggle()" class="btn btn-primary btn-lg mr-2">Novi e-Mail</button>
-            <button class="btn btn-info btn-lg">Više...</button>
+            <button (click)="eMailToggle()" class="btn btn-primary btn-lg mr-2">Pošaljite novi e-mail</button>
         </div>
     </div>
 

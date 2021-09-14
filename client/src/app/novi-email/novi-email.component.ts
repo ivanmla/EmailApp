@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { EmailMessage } from '../_models/emailMessage';
@@ -18,8 +17,7 @@ export class NoviEmailComponent implements OnInit {
   validationErrors: string[] = [];
   modalRef?: BsModalRef;
 
-  constructor(private emailService: EmailService, private router: Router, 
-    private tostr: ToastrService, private modalService: BsModalService) { }
+  constructor(private emailService: EmailService, private tostr: ToastrService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.initialzeForm();
@@ -38,7 +36,7 @@ export class NoviEmailComponent implements OnInit {
 
   newEmail() {
     this.emailService.sendMail(this.emailForm.value).subscribe(response => {
-      console.log(response);
+      //console.log(response); Modalni usjeh, očistiti formu
     }, error => {
       this.validationErrors = error;
     })
