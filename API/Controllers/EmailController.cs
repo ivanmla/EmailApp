@@ -1,10 +1,12 @@
 using API.Data;
+using API.Helpers;
 using API.Mappers;
 using API.Models;
 using API.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -14,10 +16,12 @@ namespace API.Controllers
     public class EmailController : ControllerBase
     {
         private readonly IEmailRepository _emailRepository;
+        private readonly Validator _validator;
 
-        public EmailController(IEmailRepository emailRepository)
+        public EmailController(IEmailRepository emailRepository, Validator validator)
         {
             _emailRepository = emailRepository;
+            _validator = validator;
         }
 
         [HttpGet]
@@ -34,6 +38,13 @@ namespace API.Controllers
         [Route("send")]
         public async Task<ActionResult<bool>> Save(EmailMessageDto emailMessageDto)
         {
+            var validationResult = _validator.ValidateEmail(emailMessageDto);
+
+            if (validationResult != null && validationResult.Errors.Any())
+            {
+                return BadRequest(validationResult);
+            }
+
             var email = EmailMapper.MapFromDto(emailMessageDto);
 
             var result = await _emailRepository.SaveAsync(email);

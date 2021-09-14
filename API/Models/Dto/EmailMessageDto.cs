@@ -13,13 +13,16 @@ namespace API.Models.Dto
         [EmailAddress]
         public string To { get; set; }
 
+        [Required]
         public string Cc { get; set; }
-        
+
+        [Required]
         public string Subject { get; set; }
 
-        //[RegularExpression("[1-3]")]
+        [Required]
         public string Importance { get; set; }
 
+        [Required]
         public string Content { get; set; }
     }
 }

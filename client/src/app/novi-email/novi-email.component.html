@@ -1,39 +1,78 @@
-<form #newEmailForm="ngForm" (ngSubmit)="newEmail()" autocomplete="off">
+<form [formGroup]='emailForm' (ngSubmit)="newEmail()" autocomplete="off">
     <h2 class="text-center text-primary">Novi E-mail</h2>
     <hr>
     <div class="form-group">
-        <input type="email" class="form-control" name="emailFrom" 
-            [(ngModel)]="model.from" placeholder="From">
-
+        <input 
+            [class.is-invalid]='emailForm.get("from").errors
+                && emailForm.get("from").touched'
+            type="email" 
+            class="form-control" 
+            formControlName='from' 
+            placeholder="From">
+            <div *ngIf="emailForm.get('from').hasError('required')"
+                class="invalid-feedback">Polje je obavezno za unos</div>
+            <div *ngIf="emailForm.get('from').hasError('email')"
+                class="invalid-feedback">Email nije ispravan</div>
     </div>
     <div class="form-group">
-        <input type="email" class="form-control" name="emailTo" 
-            [(ngModel)]="model.to" placeholder="To">        
+        <input 
+        [class.is-invalid]='emailForm.get("to").errors
+            && emailForm.get("to").touched'
+            type="email" 
+            class="form-control" 
+            formControlName='to' 
+            placeholder="To">
+        <div *ngIf="emailForm.get('to').hasError('required')"
+            class="invalid-feedback">Polje je obavezno za unos</div>
+        <div *ngIf="emailForm.get('to').hasError('email')"
+            class="invalid-feedback">Email nije ispravan</div>
     </div>    
     <div class="form-group">
-        <input type="text" class="form-control" name="emailCc" 
-            [(ngModel)]="model.cc" placeholder="Cc">
-
+        <input type="text" 
+        class="form-control" 
+        formControlName='cc' 
+        placeholder="Cc">
+    </div>  
+    <div class="form-group">
+        <label class="control-label" style="margin-right: 10px;">Importance: </label>
+        <label class="radio-inline">
+            <input type="radio" value='low' formControlName='importance'> Low
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value='medium' formControlName='importance' class="ml-3"> Medium
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value='high' formControlName='importance' class="ml-3"> High
+        </label>
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" name="emailSubject" 
-            [(ngModel)]="model.subject" placeholder="Subject">        
-    </div>    
-    <div class="form-group">
-        <input type="radio" name="importance" value="Low" [(ngModel)]="model.importance">
-        <label for="low">Low</label><br>
-        <input type="radio" name="importance" value="Medium" [(ngModel)]="model.importance">
-        <label for="medium">Medium</label><br>
-        <input type="radio" name="importance" value="High" [(ngModel)]="model.importance">
-        <label for="high">High</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        formControlName='subject' 
+        placeholder="Subject">
     </div>
     <div class="form-group">
-        <textarea class="form-control" [(ngModel)]="model.content" name="content" rows="6" placeholder="Content"></textarea>
+        <input 
+        type="textarea" 
+        class="form-control" 
+        formControlName='content' 
+        placeholder="Content"
+        rows="6">
     </div>
-
     <hr>
+    <div class="row" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
     <div class="form-group text-center">
         <button class="btn btn-success btn-lg mr-2" type="submit">Send</button>
         <button class="btn btn-default btn-lg mr-2" (click)="cancel()" type="button">Cancel</button>
     </div>
 </form>
+
+<p>Form value: {{emailForm.value | json}}</p>
+<p>Form status: {{emailForm.status | json}}</p>

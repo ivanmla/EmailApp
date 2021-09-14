@@ -59,22 +59,35 @@ namespace API.Mappers
         {
             var adrese = new List<EmailAddress>();
 
-            char delimiter = ';';
-            string[] emails = emailAdressDto.Split(delimiter);
+            var dtoList = GetAddressList(emailAdressDto);
 
-            foreach (var item in emails)
+            foreach (var item in dtoList)
             {
-                var trimaniItem = item.TrimEnd().TrimStart();
-                // Validiraj Email adresu
                 var email = new EmailAddress
                 {
-                    To = trimaniItem
+                    To = item
                 };
                 
                 adrese.Add(email);
             }
 
             return adrese;
+        }
+
+        public static List<string> GetAddressList(string emailAdressDto)
+        {
+            var addressList = new List<string>();
+
+            char delimiter = ';';
+            string[] emails = emailAdressDto.Split(delimiter);
+
+            foreach (var item in emails)
+            {
+                var trimaniItem = item.TrimEnd().TrimStart();                
+                addressList.Add(trimaniItem);
+            }
+
+            return addressList;
         }
     }
 }

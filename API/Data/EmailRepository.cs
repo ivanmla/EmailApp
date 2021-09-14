@@ -29,9 +29,7 @@ namespace API.Data
         public async Task<bool> SaveAsync(EmailMessage email)
         {
             var insert = _context.EmailMessages.Add(email);
-            var success = await _context.SaveChangesAsync();
-
-            return success > 0 ? true : false;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

@@ -1,7 +1,12 @@
 <div class="container mt-5">    
     <div *ngIf="!newEmailMode" style="text-align:center">
         <h1>Pošaljite novi e-mail</h1>    
-        <p class="lead">Neki text...!</p>
+            <p class="lead">
+            Fronted je napravljem u Angular frameworku, korišteni su Bootstrap i ReactiveForms.</p>
+            <p class="lead">
+                Backend je kreiran u .Net Coru 5, za povezivanje sa bazom korišten je EntityFrameworkCore.</p>
+            <p class="lead">
+                Za bazu sam odabrao Sqlite zbog jednostavnosti.</p>
         <div class="center">
             <button (click)="eMailToggle()" class="btn btn-primary btn-lg mr-2">Novi e-Mail</button>
             <button class="btn btn-info btn-lg">Više...</button>
