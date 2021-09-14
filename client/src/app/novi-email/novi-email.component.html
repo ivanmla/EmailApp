@@ -71,6 +71,19 @@
     </div>
     <div class="form-group text-center">
         <button [disabled]='!emailForm.valid' class="btn btn-success btn-lg mr-2" type="submit">Send</button>
-        <button class="btn btn-default btn-lg mr-2" (click)="cancel()" type="button">Cancel</button>
+        <button class="btn btn-warning btn-lg mr-2" (click)="openModal(template)" type="button">Cancel</button>
     </div>
 </form>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Cancel</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Ukoliko odustanete, izgubiti ćete unesene podatke.</p>
+    <button class="btn btn-warning btn-lg mr-2" (click)="confirmCancel()" type="button">Odustani</button>
+  </div>
+</ng-template>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { EmailMessage } from '../_models/emailMessage';
 import { EmailService } from '../_services/email.service';
@@ -11,12 +12,14 @@ import { EmailService } from '../_services/email.service';
   styleUrls: ['./novi-email.component.css']
 })
 export class NoviEmailComponent implements OnInit {
+  @Output() cancelNewEmailMode = new EventEmitter();
   model: EmailMessage = {};
   emailForm: FormGroup;
   validationErrors: string[] = [];
+  modalRef?: BsModalRef;
 
   constructor(private emailService: EmailService, private router: Router, 
-    private tostr: ToastrService) { }
+    private tostr: ToastrService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.initialzeForm();
@@ -41,9 +44,13 @@ export class NoviEmailComponent implements OnInit {
     })
   }
 
-  cancel() {
-    console.log('canceled');
-    this.router.navigateByUrl('/');
-  }  
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  confirmCancel() {
+    this.modalRef.hide();
+    this.cancelNewEmailMode.emit(false);
+  }
 
 }

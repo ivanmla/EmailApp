@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -13,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { ArhivaComponent } from './arhiva/arhiva.component';
 import { NoviEmailComponent } from './novi-email/novi-email.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
