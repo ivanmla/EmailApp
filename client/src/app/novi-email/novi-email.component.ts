@@ -13,9 +13,10 @@ import { EmailService } from '../_services/email.service';
 export class NoviEmailComponent implements OnInit {
   model: EmailMessage = {};
   emailForm: FormGroup;
-  validationErrors: string[];
+  validationErrors: string[] = [];
 
-  constructor(private emailService: EmailService, private router: Router, private tostr: ToastrService) { }
+  constructor(private emailService: EmailService, private router: Router, 
+    private tostr: ToastrService) { }
 
   ngOnInit(): void {
     this.initialzeForm();
@@ -25,10 +26,10 @@ export class NoviEmailComponent implements OnInit {
     this.emailForm = new FormGroup({
       from: new FormControl('', [Validators.required, Validators.email]),
       to: new FormControl('', [Validators.required, Validators.email]),
-      cc: new FormControl(''),
+      cc: new FormControl('', [Validators.required]),
       importance: new FormControl('low'),
-      subject: new FormControl(''),
-      content: new FormControl('')
+      subject: new FormControl('', [Validators.required]),
+      content: new FormControl('', [Validators.required])
     });    
   }
 
@@ -43,6 +44,6 @@ export class NoviEmailComponent implements OnInit {
   cancel() {
     console.log('canceled');
     this.router.navigateByUrl('/');
-  }
+  }  
 
 }
