@@ -16,25 +16,25 @@ namespace API.Helpers
 
             if (string.IsNullOrWhiteSpace(emailMessageDto.From))
             {
-                messages.Add("'From' je obavezan podatak.");
+                messages.Add("'From' field is required.");
             }
             else
             {
                 if (!IsEmailAddressValid(emailMessageDto.From))
                 {
-                    messages.Add("'From': Neispravna e-mail adresa.");
+                    messages.Add("'From': Email address is invalid.");
                 }
             }
 
             if (string.IsNullOrWhiteSpace(emailMessageDto.To))
             {
-                messages.Add("'To' je obavezan podatak.");
+                messages.Add("'To' field is required.");
             }
             else
             {
                 if (!IsEmailAddressValid(emailMessageDto.To))
                 {
-                    messages.Add("'To': Neispravna e-mail adresa.");
+                    messages.Add("'To': Email address is invalid.");
                 }
             }
 
@@ -45,32 +45,32 @@ namespace API.Helpers
                 {
                     if(!IsEmailAddressValid(item))
                     {
-                        messages.Add("'Cc': Neispravna e-mail adresa.");
+                        messages.Add("'Cc': Email address is invalid.");
                     }
                 }
             }
 
             if (string.IsNullOrWhiteSpace(emailMessageDto.Subject))
             {
-                messages.Add("'Subject' je obavezan podatak.");
+                messages.Add("'Subject' field is required.");
             }
 
             if (string.IsNullOrWhiteSpace(emailMessageDto.Importance))
             {
-                messages.Add("'Importance' je obavezan podatak.");
+                messages.Add("'Importance' field is required.");
             }
             else
             {
                 string[] importances = { "low", "medium", "high" };
                 if (!importances.Contains(emailMessageDto.Importance.ToLower()))
                 {
-                    messages.Add("'Importance' nije ispravna vrijednost.");
+                    messages.Add("'Importance' is not valid value.");
                 }
             }
 
             if (string.IsNullOrWhiteSpace(emailMessageDto.Content))
             {
-                messages.Add("'Content' je obavezan podatak.");
+                messages.Add("'Content' field is required.");
             }
 
             return new ValidationResult(messages);

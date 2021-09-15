@@ -16,6 +16,7 @@ export class NoviEmailComponent implements OnInit {
   emailForm: FormGroup;
   validationErrors: string[] = [];
   modalRef?: BsModalRef;
+  saveAlert = false;
 
   constructor(private emailService: EmailService, private tostr: ToastrService, private modalService: BsModalService) { }
 
@@ -36,7 +37,7 @@ export class NoviEmailComponent implements OnInit {
 
   newEmail() {
     this.emailService.sendMail(this.emailForm.value).subscribe(response => {
-      //console.log(response); Modalni usjeh, očistiti formu
+      this.saveAlert = true;
     }, error => {
       this.validationErrors = error;
     })
@@ -49,6 +50,12 @@ export class NoviEmailComponent implements OnInit {
   confirmCancel() {
     this.modalRef.hide();
     this.cancelNewEmailMode.emit(false);
+  }
+
+  onClosed(dismissedAlert: any): void {
+    this.saveAlert = false;
+    this.initialzeForm();
+    this.validationErrors = [];
   }
 
 }

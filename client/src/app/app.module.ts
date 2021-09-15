@@ -8,6 +8,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -41,7 +42,8 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     }),
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AlertModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

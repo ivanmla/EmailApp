@@ -1,5 +1,5 @@
 <form [formGroup]='emailForm' (ngSubmit)="emailForm.valid && newEmail()" autocomplete="off">
-    <h2 class="text-center text-primary">Novi E-mail</h2>
+    <h2 class="text-center text-primary">New e-mail</h2>
     <hr>
     <div class="form-group">
         <input 
@@ -8,8 +8,8 @@
             class="form-control" 
             formControlName='from' 
             placeholder="From">
-            <div *ngIf="emailForm.get('from').hasError('required')" class="invalid-feedback">Polje je obavezno za unos</div>
-            <div *ngIf="emailForm.get('from').hasError('email')" class="invalid-feedback">Email nije ispravan</div>
+            <div *ngIf="emailForm.get('from').hasError('required')" class="invalid-feedback">This field is required</div>
+            <div *ngIf="emailForm.get('from').hasError('email')" class="invalid-feedback">Email address is invalid</div>
     </div>
     <div class="form-group">
         <input 
@@ -18,8 +18,8 @@
             class="form-control" 
             formControlName='to' 
             placeholder="To">
-            <div *ngIf="emailForm.get('to').hasError('required')" class="invalid-feedback">Polje je obavezno za unos</div>
-            <div *ngIf="emailForm.get('to').hasError('email')" class="invalid-feedback">Email nije ispravan</div>
+            <div *ngIf="emailForm.get('to').hasError('required')" class="invalid-feedback">This field is required</div>
+            <div *ngIf="emailForm.get('to').hasError('email')" class="invalid-feedback">Email address is invalid</div>
     </div>    
     <div class="form-group">
         <input 
@@ -28,7 +28,7 @@
             class="form-control" 
             formControlName='cc' 
             placeholder="Cc">
-            <div *ngIf="emailForm.get('cc').hasError('required')" class="invalid-feedback">Polje je obavezno za unos</div>
+            <div *ngIf="emailForm.get('cc').hasError('required')" class="invalid-feedback">This field is required</div>
     </div>  
     <div class="form-group">
         <label class="control-label" style="margin-right: 10px;">Importance: </label>
@@ -49,7 +49,7 @@
             class="form-control" 
             formControlName='subject' 
             placeholder="Subject">
-            <div *ngIf="emailForm.get('subject').hasError('required')" class="invalid-feedback">Polje je obavezno za unos</div>
+            <div *ngIf="emailForm.get('subject').hasError('required')" class="invalid-feedback">This field is required</div>
     </div>
     <div class="form-group">
         <input 
@@ -59,7 +59,7 @@
         formControlName='content' 
         placeholder="Content"
         rows="6">
-        <div *ngIf="emailForm.get('content').hasError('required')" class="invalid-feedback">Polje je obavezno za unos</div>
+        <div *ngIf="emailForm.get('content').hasError('required')" class="invalid-feedback">This field is required</div>
     </div>
     <hr>
     <div class="row" *ngIf="validationErrors.length > 0">
@@ -75,6 +75,10 @@
     </div>
 </form>
 
+<alert *ngIf="saveAlert" type="success" dismissible="true" (onClosed)="onClosed(alert)">
+    <strong>Well done: </strong> E-mail sent successfully!
+</alert>
+
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Cancel</h4>
@@ -83,7 +87,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Ukoliko odustanete, izgubiti ćete unesene podatke.</p>
-    <button class="btn btn-warning btn-lg mr-2" (click)="confirmCancel()" type="button">Odustani</button>
+    <p>If you have made changes, any unsaved changes will be lost.</p>
+    <button class="btn btn-warning btn-lg mr-2" (click)="confirmCancel()" type="button">Cancel</button>
   </div>
 </ng-template>
