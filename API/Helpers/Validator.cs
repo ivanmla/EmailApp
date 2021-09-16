@@ -24,6 +24,10 @@ namespace API.Helpers
                 {
                     messages.Add("'From': Email address is invalid.");
                 }
+                if (emailMessageDto.From.Length > 100)
+                {
+                    messages.Add("'From': Maximum input characters in this field is 100.");
+                }
             }
 
             if (string.IsNullOrWhiteSpace(emailMessageDto.To))
@@ -36,10 +40,19 @@ namespace API.Helpers
                 {
                     messages.Add("'To': Email address is invalid.");
                 }
+                if (emailMessageDto.To.Length > 100)
+                {
+                    messages.Add("'To': Maximum input characters in this field is 100.");
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(emailMessageDto.Cc))
             {
+                if (emailMessageDto.Cc.Length > 100)
+                {
+                    messages.Add("'Cc': Maximum input characters in this field is 100.");
+                }
+
                 var listaAdresa = EmailMapper.GetAddressList(emailMessageDto.Cc);
                 foreach (var item in listaAdresa)
                 {
@@ -53,6 +66,13 @@ namespace API.Helpers
             if (string.IsNullOrWhiteSpace(emailMessageDto.Subject))
             {
                 messages.Add("'Subject' field is required.");
+            }
+            else
+            {
+                if (emailMessageDto.Subject.Length > 100)
+                {
+                    messages.Add("'Subject': Maximum input characters in this field is 100.");
+                }
             }
 
             if (string.IsNullOrWhiteSpace(emailMessageDto.Importance))
@@ -71,6 +91,13 @@ namespace API.Helpers
             if (string.IsNullOrWhiteSpace(emailMessageDto.Content))
             {
                 messages.Add("'Content' field is required.");
+            }
+            else
+            {
+                if (emailMessageDto.Content.Length > 100)
+                {
+                    messages.Add("'Content': Maximum input characters in this field is 100.");
+                }
             }
 
             return new ValidationResult(messages);

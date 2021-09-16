@@ -10,6 +10,7 @@
             placeholder="From">
             <div *ngIf="emailForm.get('from').hasError('required')" class="invalid-feedback">This field is required</div>
             <div *ngIf="emailForm.get('from').hasError('email')" class="invalid-feedback">Email address is invalid</div>
+            <div *ngIf="emailForm.get('subject').hasError('maxlength')" class="invalid-feedback">Maximum input characters in this field is 100</div>
     </div>
     <div class="form-group">
         <input 
@@ -20,6 +21,7 @@
             placeholder="To">
             <div *ngIf="emailForm.get('to').hasError('required')" class="invalid-feedback">This field is required</div>
             <div *ngIf="emailForm.get('to').hasError('email')" class="invalid-feedback">Email address is invalid</div>
+            <div *ngIf="emailForm.get('subject').hasError('maxlength')" class="invalid-feedback">Maximum input characters in this field is 100</div>
     </div>    
     <div class="form-group">
         <input 
@@ -29,6 +31,7 @@
             formControlName='cc' 
             placeholder="Cc">
             <div *ngIf="emailForm.get('cc').hasError('required')" class="invalid-feedback">This field is required</div>
+            <div *ngIf="emailForm.get('subject').hasError('maxlength')" class="invalid-feedback">Maximum input characters in this field is 100</div>
     </div>  
     <div class="form-group">
         <label class="control-label" style="margin-right: 10px;">Importance: </label>
@@ -50,6 +53,7 @@
             formControlName='subject' 
             placeholder="Subject">
             <div *ngIf="emailForm.get('subject').hasError('required')" class="invalid-feedback">This field is required</div>
+            <div *ngIf="emailForm.get('subject').hasError('maxlength')" class="invalid-feedback">Maximum input characters in this field is 100</div>
     </div>
     <textarea 
         [class.is-invalid]='emailForm.get("content").errors && emailForm.get("content").touched'
@@ -57,6 +61,7 @@
         formControlName='content' 
         placeholder="Content"></textarea>
         <div *ngIf="emailForm.get('content').hasError('required')" class="invalid-feedback">This field is required</div>
+        <div *ngIf="emailForm.get('subject').hasError('maxlength')" class="invalid-feedback">Maximum input characters in this field is 500</div>
     <hr>
     <div class="row" *ngIf="validationErrors.length > 0">
         <ul class="text-danger">
