@@ -26,12 +26,12 @@ export class NoviEmailComponent implements OnInit {
 
   initialzeForm() {
     this.emailForm = new FormGroup({
-      from: new FormControl('', [Validators.required, Validators.email]),
-      to: new FormControl('', [Validators.required, Validators.email]),
-      cc: new FormControl('', [Validators.required]),
+      from: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(100)]),
+      to: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(100)]),
+      cc: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       importance: new FormControl('low'),
-      subject: new FormControl('', [Validators.required, Validators.maxLength(2)]),
-      content: new FormControl('', [Validators.required])
+      subject: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+      content: new FormControl('', [Validators.required, Validators.maxLength(500)]),
     });    
   }
 
