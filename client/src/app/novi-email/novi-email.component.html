@@ -51,16 +51,12 @@
             placeholder="Subject">
             <div *ngIf="emailForm.get('subject').hasError('required')" class="invalid-feedback">This field is required</div>
     </div>
-    <div class="form-group">
-        <input 
+    <textarea 
         [class.is-invalid]='emailForm.get("content").errors && emailForm.get("content").touched'
-        type="textarea" 
-        class="form-control" 
+        class="form-control" form="contentBox" rows="6"         
         formControlName='content' 
-        placeholder="Content"
-        rows="6">
+        placeholder="Content"></textarea>
         <div *ngIf="emailForm.get('content').hasError('required')" class="invalid-feedback">This field is required</div>
-    </div>
     <hr>
     <div class="row" *ngIf="validationErrors.length > 0">
         <ul class="text-danger">
